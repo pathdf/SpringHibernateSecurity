@@ -1,6 +1,6 @@
 package com.pankaj.dao;
 
-import com.pankaj.model.User;
+import com.pankaj.modal.User;
 
 public interface UserDao {
 

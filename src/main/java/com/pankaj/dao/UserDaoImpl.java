@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pankaj.model.User;
+import com.pankaj.modal.User;
 
 @Repository
 public class UserDaoImpl implements UserDao {

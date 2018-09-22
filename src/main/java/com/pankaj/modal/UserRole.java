@@ -1,4 +1,4 @@
-package com.pankaj.model;
+package com.pankaj.modal;
 
 import java.util.ArrayList;
 import java.util.List;

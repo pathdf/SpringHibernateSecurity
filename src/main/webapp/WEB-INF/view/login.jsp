@@ -37,7 +37,8 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>Spring Security Login Form (Database + Hibernate Authentication)</h1>
+	<h1>Spring Security Login Form (Database + Hibernate
+		Authentication)</h1>
 
 	<div id="login-box">
 
@@ -51,7 +52,8 @@
 		</c:if>
 
 		<form name='loginForm'
-			action="<c:url value='/j_spring_security_check' />" method='POST'>
+			action="<c:url value='/auth/login_check?targetUrl=${targetUrl}' />"
+			method='POST'>
 
 			<table>
 				<tr>
@@ -62,6 +64,14 @@
 					<td>Password:</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
+
+				<!-- if this is login for update, ignore remember me check -->
+				<c:if test="${empty loginUpdate}">
+					<tr>
+						<td></td>
+						<td>Remember Me: <input type="checkbox" name="remember-me" /></td>
+					</tr>
+				</c:if>
 				<tr>
 					<td colspan='2'><input name="submit" type="submit"
 						value="submit" /></td>

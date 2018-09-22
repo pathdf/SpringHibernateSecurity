@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pankaj.dao.UserDao;
-import com.pankaj.model.UserRole;
+import com.pankaj.modal.UserRole;
 
 @Service("userDetailsService")
 @Transactional(readOnly=true)
@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException {
-	     com.pankaj.model.User user = userDao.findByUserName(userName);
+	     com.pankaj.modal.User user = userDao.findByUserName(userName);
 	     List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 	     for(UserRole userRole : user.getUserRoles()){
 	    	 authorities.add(new SimpleGrantedAuthority(userRole.getUserRole()));

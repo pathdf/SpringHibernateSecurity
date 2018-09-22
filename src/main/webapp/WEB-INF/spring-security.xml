@@ -7,28 +7,30 @@
 
 	<!-- enable use-expressions -->
 	<http auto-config="true" use-expressions="true">
-	
+
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/admin**" access="hasRole('Admin')" />
 		<intercept-url pattern="/**" access="hasRole('User')" />
 
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
-		<form-login 
-		    login-page="/login" 
-		    default-target-url="/welcome"
-			authentication-failure-url="/login?error" 
-			username-parameter="username"
-			password-parameter="password" />
-		<logout logout-success-url="/login?logout" />
+		<form-login login-page="/login" default-target-url="/welcome"
+			authentication-failure-url="/login?error" username-parameter="username"
+			password-parameter="password" login-processing-url="/auth/login_check"
+			authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler" />
+		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID" />
 		<!-- enable csrf protection -->
 		<csrf />
+
+		<remember-me token-validity-seconds="1209600"
+			remember-me-parameter="remember-me" data-source-ref="dataSource" />
+
 	</http>
 
 	<authentication-manager>
-		<authentication-provider user-service-ref="userDetailsService" >
-<!-- 			<password-encoder hash="bcrypt" />    
- -->		</authentication-provider>
+		<authentication-provider user-service-ref="userDetailsService">
+			<!-- <password-encoder hash="bcrypt" /> -->
+		</authentication-provider>
 	</authentication-manager>
 
 </beans:beans>
